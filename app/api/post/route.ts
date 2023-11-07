@@ -23,7 +23,7 @@ export const GET = async (
         return NextResponse.json({message: "성공", results, totalCnt, perPage})
         
     }catch(error){ 
-        return NextResponse.json({error : error})    
+        return NextResponse.json({error : error})
     }
 }
     return NextResponse.json({error : "에러가 발생하였습니다."})
