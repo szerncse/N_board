@@ -27,12 +27,12 @@ export default function Post(){
     const startPage = Math.floor((page - 1) / totalPageCnt) * totalPageCnt + 1;
     const endPage = Math.min(lastPage, startPage + totalPageCnt -1);
 
-    const naxtPage = () =>{
-        const naxtStart = Math.ceil((page + 1) / 5) * 5 + 1;
-        setPage(naxtStart)
+    const nextPage = () =>{
+        const nextStart = Math.ceil((page + 1) / 5) * 5 + 1;
+        setPage(nextStart)
     }
     const Prevpage = () =>{
-        const prevStart = Math.ceil((page + 1) / 5) * 5 - 4;
+        const prevStart = Math.floor((page - 1) / 5) * 5 - 4 ;
         setPage(prevStart)
     }
 
@@ -60,7 +60,7 @@ export default function Post(){
 
 
     <div className='flex justify-center gap-x-5 mb-5 '>
-    {page > 5 && <button className='bg-white border px-1.5 py-1 rounded text-sm' onClick={()=>{setPage(page - 5)}}>이전</button>}
+    {page > 5 && <button className='bg-white border px-1.5 py-1 rounded text-sm' onClick={()=>{Prevpage()}}>이전</button>}
     {
         Array(endPage - startPage + 1).fill(null).map((_,i)=>
         {
@@ -71,7 +71,7 @@ export default function Post(){
         })
     }
 
-    {page < lastPage && <button className='bg-white border px-1.5 py-1 rounded text-sm' onClick={()=>{setPage(page + 5)}}>다음</button>}
+    {page < lastPage && <button className='bg-white border px-1.5 py-1 rounded text-sm' onClick={()=>nextPage()}>다음</button>}
 
        </div>
     </>
