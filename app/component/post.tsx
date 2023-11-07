@@ -66,7 +66,7 @@ export default function Post(){
         {
             const pageNumber = i + startPage;
             return(
-                <button key={pageNumber} onClick={()=>{setPage(pageNumber)}} className='bg-white border px-1.5 py-1 rounded text-sm basis-32'>{pageNumber}</button>
+                <button key={pageNumber} onClick={()=>{setPage(pageNumber)}} className={`${page === pageNumber ? 'bg-amber-200' : 'bg-white'} border px-1.5 py-1 rounded text-sm basis-32`}>{pageNumber}</button>
             )
         })
     }

@@ -23,7 +23,27 @@ export default function Write(){
         setFormData({...formData, [e.target.name] : e.target.value});
         // console.log(formData)
     }
-    
+    const submitEvent = async (e: React.FocusEvent<HTMLFormElement>)=>{
+        e.preventDefault();
+        try{
+            const res = await fetch('api/write',{
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            if(res.ok){
+                const data = await res.json();
+                console.log(data.message);
+        }else{
+            const errorData = await res.json();
+            console.log(errorData.error);
+        }
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     return (
     <>
