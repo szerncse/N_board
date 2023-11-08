@@ -38,7 +38,7 @@ export default function Post(){
 
     return (
     <>
-   
+
     <div className="mx-auto max-w-7xl p-6">
         <div className="flex justify-between items-center mb-6">
             <h1 className='text-2xl font-semibold'>게시판</h1>
@@ -51,14 +51,14 @@ export default function Post(){
              return(
                  <React.Fragment key={i}>
                 <p>현재페이지: {page}</p>
-                <p>가격: {e.amout}</p>
+                <p>가격: {e.amount}</p>
                 <p>결제일자: {e.payment_date}</p>
                 </React.Fragment>
             )
         })
     }
 
-
+  
     <div className='flex justify-center gap-x-5 mb-5 '>
     {page > 5 && <button className='bg-white border px-1.5 py-1 rounded text-sm' onClick={()=>{Prevpage()}}>이전</button>}
     {

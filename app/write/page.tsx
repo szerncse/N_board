@@ -1,8 +1,8 @@
 'use client';
-
 import Link from "next/link";
 import { title } from "process";
 import { useState } from "react";
+
 
 interface forType {
     name: string;
@@ -23,7 +23,7 @@ export default function Write(){
         setFormData({...formData, [e.target.name] : e.target.value});
         // console.log(formData)
     }
-    const submitEvent = async (e: React.FocusEvent<HTMLFormElement>)=>{
+    const submitEvent = async (e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         try{
             const res = await fetch('api/write',{
@@ -33,9 +33,11 @@ export default function Write(){
                 },
                 body: JSON.stringify(formData)
             })
-            if(res.ok){
+            if(res.ok){              
                 const data = await res.json();
-                console.log(data.message);
+            alert('정상적으로 등록 하였습니다.');
+            window.location.href='/'
+        
         }else{
             const errorData = await res.json();
             console.log(errorData.error);
@@ -45,10 +47,12 @@ export default function Write(){
         }
     }
 
+
     return (
     <>
 
-    <form method="post">
+    <form method="post"
+     onSubmit={submitEvent}>
         <input type="text" name="name" defaultValue={formData.name} onChange={changeEvent} className="shadow text-gray-700 text-sm mb-3 border"/>
         <input type="text" name="title" defaultValue={formData.title} 
         onChange={changeEvent} className="shadow text-gray-700 text-sm mb-3 border"/>
