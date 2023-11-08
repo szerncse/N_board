@@ -13,10 +13,11 @@ export const GET = async (
         const page = Number(req.nextUrl.searchParams.get("page") || 1);
         const perPage = 15;
         const offset = (page - 1) * perPage;
+
      try{
-         const [results] = await db.query<RowDataPacket[]>('SELECT * FROM world.countrylanguage  limit ?  offset ?',[perPage, offset]);
+         const [results] = await db.query<RowDataPacket[]>('SELECT * FROM park.board  order by date DESC limit ?  offset ?',[perPage, offset]);
         const [countResult] = await db.query<RowDataPacket[]>
-        ('select count(*) as cnt from sakila.payment');
+        ('select count(*) as cnt from park.board');
         const totalCnt = countResult[0].cnt;
         console.log(results)
 
