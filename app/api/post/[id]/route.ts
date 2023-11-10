@@ -9,3 +9,13 @@ export const GET = async (req:NextRequest) : Promise<NextResponse> =>{
 
   return NextResponse.json({data:results})
 }
+
+export const POST = async (req:NextRequest) : Promise<NextResponse> =>{
+
+  if(req.method === 'POST'){
+    return NextResponse.json({message: "메세지"})
+  }else{
+    return NextResponse.json({message: "에러"})
+  }
+
+}

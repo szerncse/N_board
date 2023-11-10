@@ -1,4 +1,3 @@
-import { promises } from "dns";
 import { NextRequest, NextResponse } from "next/server";
 import db from '@/db'
 
@@ -10,12 +9,11 @@ interface PosData {
 
 export const POST = async (
     req: NextRequest,
-    res: NextResponse
+    // res: NextResponse
 ) : Promise<NextResponse> =>{
     
 if(req.method === 'POST'){
     try{
-
         const {name , title, content}: PosData =JSON.parse(await req.text());
         
         if(!name || !title || !content){
@@ -25,15 +23,11 @@ if(req.method === 'POST'){
             // insert - 입력
             // delete - 삭제
             // update - 수정
-            const [results] = await db.query(
-                'insert into park.board (author, title, content) values (? , ? , ?)',[name, title, content]
-                )
-                return NextResponse.json({message: "성공", result:results});
+            const [results] = await db.query('insert into park.board (author, title, content) values (? , ? , ?)',[name, title, content]);
+            return NextResponse.json({message: "성공", result:results});
         }
-        return NextResponse.json({message: "성공"});
-       
+
     }
-    
     
     
     catch(error){
@@ -41,7 +35,6 @@ if(req.method === 'POST'){
     }
 }else{
     return NextResponse.json({error: "정상적인 데이터가 아닙니다."});
-}
-    return NextResponse.json({message: "성공"});
+    }
 
 }

@@ -5,8 +5,12 @@ export default async function NotFound(){
     const headerList = headers();
     const domain = headerList.get('referer');
     // const data = await getSiteData(domain)
-
+    console.log(headerList.get('referer'))
     return(
-        <p className='text-sky-500  text-center p-40'>입력하신 {domain}은 없는 페이지 입니다.</p>
+        <>
+
+        <p className='text-sky-500  text-center p-40'>입력 하신 {domain}은 없는 페이지 입니다.</p>
+
+        </>
     )
 }

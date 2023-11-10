@@ -7,7 +7,7 @@ interface PostList {
     title: string;
     content: string;
     author: string;
-    date:string;
+    date: string;
     count: number;
 }
 
@@ -30,53 +30,49 @@ export default function Detail(){
     }, [params.id])
     // 변수들어가면 써주기
 
-    const deletpost =  async (e: number)=>{
+    const deletePost =  async (e: number)=>{
         try{
-            const res = await fetch(`api/post/${e}`,{
-                method: 'POST',
-                headers: {
-                    'Content-Type' : 'application/json'
-                },
-                body: JSON.stringify({id: e})
-            })
-            if(res.ok){              
-                const data = await res.json();
-            alert('정상적으로 등록 하였습니다.');
-            window.location.href='/'
-        
+          const res = await fetch(`api/post/${e}`,{
+            method: 'POST',
+            headers: {
+              'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({id: e})
+          })
+          if(res.ok){              
+            const data = await res.json();
+            console.log(data);
+            // alert('정상적으로 등록 하였습니다.');
+            // window.location.href='/'
         }else{
-            const errorData = await res.json();
-            console.log(errorData.error);
+          const errorData = await res.json();
+          console.log(errorData.error);
         }
-        }catch(error){
-            console.log(error);
-        }
-
-        alert(e);
+      }catch(error){
+        console.log(error);
+      }
+        // alert(e);
         // alert(e) > 현재 포스트 아이디값
-
     }
 
     return (
-        <>
+      <>
         {isLoading && <Loading />}
         {
-            post.length > 0 && (
-            <>
+          post.length > 0 && (
+          <>
             <p>제목 ㅣ {post && post[0]?.title}</p>
             <p>제목 ㅣ {post && post[0]?.content}</p>
-
-            </>
-            )
+          </>
+          )
         }
         <button  className="bg-green-500 text-white px-4 py-2 rounded shadow-md hover:bg-green-600">수정</button>
-        <button  className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600" onClick={()=>deletpost(post[0].id)}>삭제</button>
+        <button  className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600" onClick={()=>{deletePost(post && post[0]?.id)}}>삭제{post && post[0]?.id}</button>
         </>
     )
 }
 
 function Loading(){
-
        return(
 
         <div className="ficed w-full h-full bg-black/50 top-0 left-0 z-50">
@@ -129,11 +125,10 @@ function Loading(){
 </g><g transform="rotate(330 50 50)">
   <rect x="47" y="24" rx="3" ry="6" width="6" height="12" fill={`#000000`}>
     <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate>
-  </rect>
-</g>
-</svg>
-        </div>
-      </div>
-       )
-    
+         </rect>
+       </g>
+      </svg>
+    </div>
+  </div>
+ ) 
 }
