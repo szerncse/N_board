@@ -14,10 +14,10 @@ export const GET = async (
     const offset = (page - 1) * perPage;
 
     try{
-      const [results] = await db.query<RowDataPacket[]>('SELECT * FROM park.board order by date DESC limit ? offset ?', [perPage, offset]);
-      const [countResult] = await db.query<RowDataPacket[]>('select count(*) as cnt from park.board');
+      const [results] = await db.query<RowDataPacket[]>('SELECT * FROM coco.board order by date DESC limit ? offset ?', [perPage, offset]);
+      const [countResult] = await db.query<RowDataPacket[]>('select count(*) as cnt from coco.board');
       const totalCnt = countResult[0].cnt;
-      // console.log(results)
+      console.log(results)
 
 
       return NextResponse.json({message: "성공", results, totalCnt, page, perPage})

@@ -1,32 +1,32 @@
-'use client'
+'use client';
 import Link from 'next/link';
-import React, {useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 
 interface PostList {
-    id: number;
-    title: string;
+    id : number;
+    title : string;
     content: string;
     author: string;
-    date:string;
-    count: number;
-}
+    date: string;
+    count: number
+  }
 
 export default function Post(){
-    const [posts, setPosts] = useState<PostList[]>([]);
-    const [totalCnt, setTotalCnt] = useState<number>(0);
-    const [page, setPage] = useState<number>(1);
+  const [posts, setPosts] = useState<PostList[]>([]);
+  const [totalCnt, setTotalCnt] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
 
-    useEffect(()=>{
-        const fatcData = async ()=>{
-            if(!page) return;
-            const res = await fetch(`/api/post?page=${page}`);
-            const data = await res.json();
-            setPosts(data.results);
-            setTotalCnt(data.totalCnt);
-            // console.log(data)
-        }
-        fatcData()
-    }, [page])
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      if(!page) return;
+      const res = await fetch(`/api/post?page=${page}`);
+      const data = await res.json();
+      setPosts(data.results);
+      setTotalCnt(data.totalCnt);
+      console.log(data)
+    }
+    fetchData()
+  }, [page])
 
 
     const lastPage = Math.ceil(totalCnt / 15);
@@ -81,7 +81,6 @@ export default function Post(){
             </div>
         </div>
     </div>
-
 
   
     <div className='flex justify-center gap-x-5 mb-5 '>

@@ -1,76 +1,94 @@
 'use client';
+import Comment from "@/app/components/comment";
+import { useCustomSession } from "@/app/sessions";
+import Link from "next/link";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from 'react';
 
 interface PostList {
-    id: number;
-    title: string;
-    content: string;
-    author: string;
-    date: string;
-    count: number;
+  id : number;
+  title : string;
+  content: string;
+  userid: string;
+  username: string;
+  date: string;
+  count: number
 }
 
 export default function Detail(){
-
-    const params = useParams();
-    const [post, setPost] = useState<PostList[]>([])
-    const [isLoading, setIsLoding] = useState<boolean>(true);
-
-    useEffect(()=>{
-        const fetchData = async ()=>{
-            // 배열의 마지막 값을 가지고 오는 방법 pop
-            const res = await fetch(`/api/post/${params.id}`);
-            const data = await res.json();
-            console.log(data);
-            setPost(data.data);
-            setIsLoding(false);
-        }
-        fetchData();
-    }, [params.id])
+  const params = useParams();
+  const {data: session } = useCustomSession();
+  const [post, setPost] = useState<PostList[]>([])
+  const [isLoading,setIsLoading] = useState<boolean>(true);
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      // 배열의 마지막 값을 가지고 오는 방법 pop
+      const res = await fetch(`/api/post/${params.id}`);
+      const data = await res.json();
+      console.log(data);
+      setPost(data.data);
+      setIsLoading(false)
+    }
+    fetchData();
+  }, [params.id])
     // 변수들어가면 써주기
 
-    const deletePost =  async (e: number)=>{
-        try{
-          const res = await fetch(`api/post/${e}`,{
-            method: 'POST',
-            headers: {
-              'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({id: e})
-          })
-          if(res.ok){              
-            const data = await res.json();
-            console.log(data);
-            // alert('정상적으로 등록 하였습니다.');
-            // window.location.href='/'
+    const deletePost = async (e: number)=>{
+      try{
+        const res = await fetch(`/api/delete`,{
+          method: 'POST',
+          headers: {
+            'Content-Type' : 'application/json'
+          },
+          body: JSON.stringify({id: e})
+        })
+        if(res.ok){
+          const data = await res.json();
+          console.log(data);
+          // alert('정상적으로 등록 하였습니다.');
+          // window.location.href = '/';
         }else{
           const errorData = await res.json();
           console.log(errorData.error);
         }
+  
       }catch(error){
         console.log(error);
       }
+    }
         // alert(e);
         // alert(e) > 현재 포스트 아이디값
     }
 
     return (
       <>
-        {isLoading && <Loading />}
-        {
-          post.length > 0 && (
+      {isLoading && <Loading/>}
+      {
+        post.length > 0 && (
           <>
-            <p>제목 ㅣ {post && post[0]?.title}</p>
-            <p>제목 ㅣ {post && post[0]?.content}</p>
+            <p>제목 : {post && post[0]?.title}</p>
+            <p>제목 : {post && post[0]?.content}</p>
+            {
+              session ? <Comment id={post && post[0]?.id} /> : <p className="block border p-4 text-center my-5 rounded-md"> <Link href="/login">로그인 이후 댓글을 작성할 수 있습니다.</Link> </p>
+            }
           </>
-          )
+        ) 
+      }
+
+
+{
+        session && session.user && (
+          (post && post[0] && session.user.email === post[0].userid) || session.user.level === 10
+        )  && <>
+          <button  className="bg-green-500 text-white px-4 py-2 rounded shadow-md hover:bg-green-600">수정</button>
+          <button  className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600" onClick={()=>{deletePost(post && post[0]?.id)}}>삭제{post && post[0]?.id}</button>
+          </>
         }
-        <button  className="bg-green-500 text-white px-4 py-2 rounded shadow-md hover:bg-green-600">수정</button>
-        <button  className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600" onClick={()=>{deletePost(post && post[0]?.id)}}>삭제{post && post[0]?.id}</button>
-        </>
+  </>
     )
 }
+
+{/* <Link></Link> */}
 
 function Loading(){
        return(

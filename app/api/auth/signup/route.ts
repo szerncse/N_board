@@ -27,9 +27,13 @@ export const POST = async (
         if(memberCnt > 0){
             return NextResponse.json({message : "해당 이메일이 존재합니다."})
         }else{
-            const [results] = await db.query('insert into park.member (email, password, name) Values(?,?,?)',[email, hash, name]);
-    
-            return NextResponse.json({message: "성공", data: results})
+            const [results] = await db.query('insert into park.member (email, password, name) Values(?,?,?,?)',[email, hash,name]);
+            const data = {
+                email : email,
+                password: password
+            }
+
+            return NextResponse.json({message: "성공", data: data})
         }
     }else{
         return NextResponse.json({error : "실패"})
