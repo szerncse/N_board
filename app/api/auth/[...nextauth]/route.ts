@@ -47,11 +47,12 @@ export const authOptions : any = {
             password: {label: "password", type : "password"}
             },
         // 로그인 요청시 실행 되는 코드 디비와 비교 이후 맞으면 return user 정보를 보내고 틀리면 return null
+        
         async authorize(credentials) :Promise<User | null>{
 
             try{
 
-                const [results] = await db.query<RowDataPacket[]>('select * from parknamju.member where email = ?', [credentials?.email]);
+                const [results] = await db.query<RowDataPacket[]>('select * from coco.member where email = ?', [credentials?.email]);
                 const userResult = results[0];
                 if(!credentials || !credentials.email || !credentials.password){
                   return null;
@@ -80,9 +81,9 @@ export const authOptions : any = {
       
           })
         ],
-pages: {
-signIn : '/login'
-},
+// pages: {
+// signIn : '/login'
+// },
 
 // jwt 만료일  설정
 session : {

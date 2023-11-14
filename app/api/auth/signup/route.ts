@@ -21,13 +21,13 @@ export const POST = async (
 
         const hash = await bcrypt.hash(password, 10)
 
-        const [checkMember] = await db.query<RowDataPacket[]>('select count(*) as cnt from park.member where email = ?',[email]);
+        const [checkMember] = await db.query<RowDataPacket[]>('select count(*) as cnt from coco.member where email = ?',[email]);
         const memberCnt = checkMember[0].cnt;
 
         if(memberCnt > 0){
             return NextResponse.json({message : "해당 이메일이 존재합니다."})
         }else{
-            const [results] = await db.query('insert into park.member (email, password, name) Values(?,?,?,?)',[email, hash,name]);
+            const [results] = await db.query('insert into coco.member (email, password, name) Values(?,?,?)',[email, hash,name]);
             const data = {
                 email : email,
                 password: password
