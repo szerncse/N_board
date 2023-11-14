@@ -67,15 +67,19 @@ export default function Write(){
     return (
     <>
     <form method="post" onSubmit={submitEvent}>
+
+    <div className=" border rounded-3 text-center">
+
         <input type="text" name="name" defaultValue={session && session.user.name} onChange={changeEvent} className="shadow text-gray-700 text-sm mb-2 border" />
 
-        <input type="text" className="shadow text-gray-700 text-sm mb-2 border" name="title" onChange={changeEvent} defaultValue={formData.title} />
+{/* 제목 */}
+        <input type="text" className="shadow text-gray-700 text-sm mb-2 border bg-sky-300" name="title" onChange={changeEvent} defaultValue={formData.title} />
 
-        <textarea name="content" className="shadow text-gray-700 text-sm mb-2 border" onChange={changeEvent} defaultValue={formData.content}></textarea>
+        <textarea name="content" className="shadow text-gray-700 text-sm mb-2 border  bg-sky-200 w-60" onChange={changeEvent} defaultValue={formData.content}></textarea>
+        </div>
 
         <Link href={"/"} className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600 focus:outline-none">취소</Link>
-
-        <button className='bg-yellow-300 text-white px-4 py-2 rounded shadow-md hover:bg-yellow-400 focus:outline-none' >등록</button>
+        <button className='bg-red-300 text-white px-4 py-2 rounded shadow-md hover:bg-yellow-400 focus:outline-none' >등록</button>
     </form>
 
     </>

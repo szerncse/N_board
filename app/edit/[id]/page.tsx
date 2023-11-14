@@ -30,6 +30,7 @@ export default async function Edit(props:editProps){
         ? 
         <form method="post">
         <input type="text" name="name"  className="shadow text-gray-700 text-sm mb-2 border"/>
+        
         <input type="text" name="title" 
        className="shadow text-gray-700 text-sm mb-2 border"/>
     

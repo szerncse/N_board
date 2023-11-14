@@ -1,5 +1,5 @@
 'use client';
-import Comment from "@/app/components/comment";
+import Comment from "@/app/component/comment";
 import { useCustomSession } from "@/app/sessions";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -60,13 +60,15 @@ export default function Detail(){
     }
         // alert(e);
         // alert(e) > 현재 포스트 아이디값
-    }
+    
 
     return (
+      
       <>
       {isLoading && <Loading/>}
       {
-        post.length > 0 && (
+        post.length > 0 && 
+        (
           <>
             <p>제목 : {post && post[0]?.title}</p>
             <p>제목 : {post && post[0]?.content}</p>
@@ -76,9 +78,7 @@ export default function Detail(){
           </>
         ) 
       }
-
-
-{
+      {
         session && session.user && (
           (post && post[0] && session.user.email === post[0].userid) || session.user.level === 10
         )  && <>
@@ -87,10 +87,12 @@ export default function Detail(){
           </>
         }
   </>
+
     )
 }
 
-{/* <Link></Link> */}
+
+
 
 function Loading(){
        return(

@@ -6,7 +6,7 @@ export const GET = async (req:NextRequest) : Promise<NextResponse> =>{
   const pathname = req.nextUrl.pathname;
   const postId = pathname.split('/').pop()
   const [results] = await db.query<RowDataPacket[]>('SELECT * FROM coco.board where id = ?',[postId]);
-
+console.log(results)
   return NextResponse.json({data:results})
 }
 
