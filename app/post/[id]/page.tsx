@@ -45,8 +45,10 @@ export default function Detail(){
         if(res.ok){
           const data = await res.json();
           console.log(data);
-          // alert('정상적으로 등록 하였습니다.');
-          // window.location.href = '/';
+          alert('정상적으로 등록 하였습니다.');
+          window.location.href = '/';
+          // 게시글 업로드
+          
         }else{
           const errorData = await res.json();
           console.log(errorData.error);
