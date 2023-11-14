@@ -16,7 +16,9 @@ export const POST = async (
         if(!id){
           return NextResponse.json({message: "데이터가 부족합니다."});
         }else{
-          // await db.query('delete from parknamju.board where id = ?', [id]);
+
+          // await db.query('delete from coco.board where id = ?', [id]);
+
           return NextResponse.json({message:"정상적으로 삭제 되었습니다."});
         }    
   

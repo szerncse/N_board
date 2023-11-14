@@ -46,8 +46,10 @@ export default function Write(){
         if(res.ok){
           const data = await res.json();
           console.log(data.message);
-          // alert('정상적으로 등록 하였습니다.');
-          // window.location.href = '/';
+
+          alert('정상적으로 등록 하였습니다.');
+          window.location.href = '/';
+          // 글쓰기후 홈으로
         }else{
           const errorData = await res.json();
           console.log(errorData.error);

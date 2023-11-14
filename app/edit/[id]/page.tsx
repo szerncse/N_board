@@ -17,7 +17,7 @@ interface editProps{
 }
 export default async function Edit(props:editProps){
     console.log(props.params)
-    const [results] = await db.query<RowDataPacket[]>('select * from park.board where id = ?',[props.params.id]);
+    const [results] = await db.query<RowDataPacket[]>('select * from coco.board where id = ?',[props.params.id]);
     console.log(results[0].author)
 
 // 'update 테이블명 set 필드=변경값, 필드=변경값, 필드=변경값 where id = 변경할아이디'
