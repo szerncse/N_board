@@ -47,6 +47,9 @@ export default function Post(){
 
     return (
     <>
+      <Link href="/post" ></Link>
+      {/* 각자의 링크의 아이디값으로 */}
+
 
     <div className="mx-auto max-w-7xl p-6">
         <div className="flex justify-between items-center mb-6">

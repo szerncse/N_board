@@ -65,6 +65,7 @@ export default function Detail(){
     return (
       
       <>
+
       {isLoading && <Loading/>}
       {
         post.length > 0 && 
