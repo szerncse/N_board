@@ -19,11 +19,8 @@ export const POST = async (
           if(!userid || !username || !title || !content){
             return NextResponse.json({message: "데이터가 부족합니다."});
           }else{
-             // select - 선택
-            // insert - 입력
-            // delete - 삭제
-            // update - 수정
-            const [results] = await db.query('insert into parknamju.board (userid, username, title, content) VALUES (?, ?, ?, ?)', [userid, username, title, content]);
+            // select - 선택 insert - 입력  delete - 삭제 update - 수정
+            const [results] = await db.query('insert into coco.board (userid, username, title, content) VALUES (?, ?, ?, ?)', [userid, username, title, content]);
             return NextResponse.json({message: "성공", result: results});
           }    
     
