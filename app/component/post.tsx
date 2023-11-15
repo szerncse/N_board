@@ -47,9 +47,7 @@ export default function Post(){
 
     return (
     <>
-      <Link href="/post" ></Link>
-      {/* 각자의 링크의 아이디값으로 */}
-
+       {/* 각자의 링크의 아이디값으로 */}
 
     <div className="mx-auto max-w-7xl p-6">
         <div className="flex justify-between items-center mb-6">
@@ -61,7 +59,10 @@ export default function Post(){
             <div className="min-w-full">
                 <ul className='bg-gray-100 flex justify-between'>
                     <li className='px-6 basis-2/12  py-3 text-center'>번호</li>
-                    <li className='px-6 basis-6/12  py-3 text-center'>제목</li>
+                    
+                    <Link href="/post" >
+                    <li className='px-6 basis-6/12  py-3 text-center'>제목</li></Link>
+
                     <li className='px-6 basis-2/12  py-3 text-center'>작성자</li>
                     <li className='px-6 basis-2/12  py-3 text-center'>작성일</li>
                 </ul>
@@ -72,13 +73,13 @@ export default function Post(){
                         const year = date.getFullYear();
                         const month = (date.getMonth() + 1).toString().padStart(2,'0');
                         const day = date.getDate().toString().padStart(2,'0')
-                        const formaDate = `${year}-${month}-${day}`
+                        const formatDate = `${year}-${month}-${day}`
                         return(
                             <ul key={i} className='flex justify-between'>
                                 <li className='px-6 basis-2/12 py-3 text-center'>{posts.length - i}</li>
                                 <li className='px-6 basis-6/12 py-3 text-center'>{e.title}</li>
                                 <li className='px-6 basis-2/12 py-3 text-center'>{e.username}</li>
-                                <li className='px-6 basis-2/12 py-3 text-center'>{formaDate}</li>
+                                <li className='px-6 basis-2/12 py-3 text-center'>{formatDate}</li>
                             </ul>
                             )
                         })

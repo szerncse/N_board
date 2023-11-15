@@ -15,21 +15,61 @@ data.id 로 사용 가능...
 
 
 'use client';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCustomSession } from "../sessions";
+import {useParams} from 'next/navigation'
+
 
 interface CommentProps {
-    id: number
+  id: number
 }
-  
+interface formType {
+  parentid : number;
+  userid : string;
+  username: string;
+  content: string;
+}
+
+interface CommentType {
+  id : number;
+  parentid : number;
+  userid : string;
+  username: string;
+  content: string;
+  date: string;
+}
 
 export default function Comment(props: CommentProps){
     const {id} = props;
-    const [comment, setComment] = useState<string>('');
-    const commentValue = (e: React.ChangeEvent<HTMLInputElement>) =>{
-      setComment(e.target.value);
-    }
     const {data: session } = useCustomSession();
+    const [formData, setFormData] = useState<formType>({
+      parentid : id,
+      userid: session?.user?.email ?? '',
+      username: session?.user?.name ?? '',
+      content: ''
+    })
+
+    const [totalComment, setTotalComment] = useState<CommentType[]>();
+    
+    const commentValue = (e: React.ChangeEvent<HTMLInputElement>) =>{
+      // setComment(e.target.value);
+      setFormData({...formData, [e.target.name] : e.target.value});
+      console.log(formData)
+    }
+
+    const params = useParams();
+
+    useEffect(()=>{
+      const fetchData = async ()=>{
+      const res = await fetch(`/api/comment?id=${params.id}`)
+      const data = await res.json();
+      setTotalComment(data.result);
+      }
+      fetchData()
+    }, [useParams.id])
+
+
+
     const cmtSubmit = async ()=>{
         
         try{
@@ -39,8 +79,13 @@ export default function Comment(props: CommentProps){
               headers : {
                 'Content-Type' : 'application/json'
               },
-              body: JSON.stringify(comment)
+              body: JSON.stringify(formData)
             })
+            if(res.ok){
+              const data = await res.json();
+              console.log(data);
+              setTotalComment(data.result)
+            }
       
           }catch(error){
             console.log(error);
@@ -53,9 +98,28 @@ export default function Comment(props: CommentProps){
         {
           session && session.user && <>
             <p>댓글 목록</p>
-            <input type="text" onChange={commentValue} className="border p-2 border-orange-500 rounded " />
-            {comment}
-            <button>댓글 전송</button>
+            {
+              totalComment && totalComment.map((e,i)=>{
+
+                const date = new Date(e.date);
+                // data.settime(date.getTime()+(60+60*9*1000))
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2,'0');
+                const day = date.getDate().toString().padStart(2,'0')
+
+                const hours = (date.getHours()+9).toString().padStart(2,'0')
+                const minutes = date.getMinutes().toString().padStart(2,'0')
+                const seconds = date.getSeconds().toString().padStart(2,'0')
+                const formatDate = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`
+
+                return (
+                  <p>{formatDate}</p>
+                )
+              })
+            }
+            <input name="content" type="text" onChange={commentValue} className="border p-2 border-orange-500 rounded " />
+            <button onClick={cmtSubmit}>댓글 전송</button>
+            {/* 수정삭제 넣기 */}
           </>
         }
       </>
