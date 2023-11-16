@@ -46,9 +46,9 @@ export const GET = async (
         if(req.method === 'GET'){
          try{
 
-            const pathname = req.nextUrl.searchParams.get("id");
+            const parentid = req.nextUrl.searchParams.get("id");
             console.log(parentid);
-            const [result] = await db.query<RowDataPacket[]>('select * from coco.comment where parentid = ?' ,[parentid]);
+            const [results] = await db.query<RowDataPacket[]>('select * from coco.comment where parentid = ?' ,[parentid]);
 
 
 
