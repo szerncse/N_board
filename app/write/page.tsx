@@ -66,21 +66,44 @@ export default function Write(){
 
     return (
     <>
-    <form method="post" onSubmit={submitEvent}>
+ <div className="max-w-lg mx-auto mt-16">
+      <form method="post" onSubmit={submitEvent} className="space-y-6">
+        <div className="shadow overflow-hidden sm:rounded-md">
+          <div className="px-4 py-5 bg-sky-100 sm:p-6">
+            <div className="grid grid-cols-6 gap-6">
+              
+              <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700r">이름</label>
+                <input type="text" id="name" name="name"
+                  defaultValue={session.user.name} onChange={changeEvent}
+                  className="mt-1 focus:ring-sky-500 focus:border-sky-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              </div>
 
-    <div className=" border rounded-3 text-center">
+              <div className="col-span-6">
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                  제목
+                </label>
+                <input type="text" id="title" name="title" onChange={changeEvent} 
+                  defaultValue={formData.title}
+                  className="mt-1 focus:ring-sky-500 focus:border-sky-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              </div>
 
-        <input type="text" name="name" defaultValue={session && session.user.name} onChange={changeEvent} className="shadow text-gray-700 text-sm mb-2 border" />
-
-{/* 제목 */}
-        <input type="text" className="shadow text-gray-700 text-sm mb-2 border bg-sky-300" name="title" onChange={changeEvent} defaultValue={formData.title} />
-
-        <textarea name="content" className="shadow text-gray-700 text-sm mb-2 border  bg-sky-200 w-60" onChange={changeEvent} defaultValue={formData.content}></textarea>
+              <div className="col-span-6">
+                <label htmlFor="content" className="block text-sm font-medium text-gray-700">내용</label>
+                <textarea id="content" name="content" onChange={changeEvent} 
+                  defaultValue={formData.content}
+                  className="mt-1 focus:ring-sky-500 focus:border-sky-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <Link href={"/"} className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600 focus:outline-none">취소</Link>
-        <button className='bg-red-300 text-white px-4 py-2 rounded shadow-md hover:bg-yellow-400 focus:outline-none' >등록</button>
-    </form>
+        <div className="flex justify-end space-x-4">
+          <Link href={"/"} className="bg-sky-500 text-white px-4 py-2 rounded shadow-md hover:bg-sky-600 focus:outline-none">취소</Link>
+          <button className="bg-red-300 text-white px-4 py-2 rounded shadow-md hover:bg-yellow-400 focus:outline-none">등록</button>
+        </div>
+      </form>
+    </div>
 
     </>
     )

@@ -57,11 +57,9 @@ export default function Post(){
         
         <div className="bg-white shadow-md rounded-lg">
             <div className="min-w-full">
-                <ul className='bg-gray-100 flex justify-between'>
+                <ul className='bg-sky-100 flex justify-between'>
                     <li className='px-6 basis-2/12  py-3 text-center'>번호</li>
-                    
-                    <Link href="/post" >
-                    <li className='px-6 basis-6/12  py-3 text-center'>제목</li></Link>
+                    <li className='px-6 basis-6/12  py-3 text-center'>제목</li>
 
                     <li className='px-6 basis-2/12  py-3 text-center'>작성자</li>
                     <li className='px-6 basis-2/12  py-3 text-center'>작성일</li>
@@ -74,10 +72,12 @@ export default function Post(){
                         const month = (date.getMonth() + 1).toString().padStart(2,'0');
                         const day = date.getDate().toString().padStart(2,'0')
                         const formatDate = `${year}-${month}-${day}`
+                        
                         return(
                             <ul key={i} className='flex justify-between'>
                                 <li className='px-6 basis-2/12 py-3 text-center'>{posts.length - i}</li>
-                                <li className='px-6 basis-6/12 py-3 text-center'>{e.title}</li>
+                                <Link href="/post" >
+                                <li className='px-6 basis-6/12 py-3 text-center'>{e.title}</li></Link>
                                 <li className='px-6 basis-2/12 py-3 text-center'>{e.username}</li>
                                 <li className='px-6 basis-2/12 py-3 text-center'>{formatDate}</li>
                             </ul>

@@ -1,33 +1,42 @@
-'use client';
-import { signIn, signOut} from 'next-auth/react';
+
 import Link from 'next/link';
-import { useCustomSession } from '../sessions';
+import { authOptions } from '../api/auth/[...nextauth]/route';
+import {getServerSession} from 'next-auth';
+// import { useCustomSession } from '../sessions';
+
 
 interface userInfo {
+  user: {
     name: string;
     email: string;
-    image : string;
+    image?: string;
+    level ?: number
+  }
 }
+
 interface PropsData {
     session?: userInfo | null
 }
 
-export default function Login(){
-    const {data: session, status } = useCustomSession();
-    const redirectTo = ()=>{
-      sessionStorage.setItem('preUrl', window.location.href);
-      window.location.href= "/login"
-    }
+export default async function Login(){
+    // const {data: session, status } = useCustomSession();
+    const session = await getServerSession(authOptions) as userInfo;
+    
+
 
     return (
         <>
 
-{
-        status !== 'loading' && session && session.user?.email 
+      {
+       session && session.user
         ? 
           <>
-            <p>{session && session.user?.name}님 반갑습니다.</p>
-            <button onClick={()=>{signOut()}}>로그아웃</button> 
+      <div className="bg-green-600 border-5 text-white p-3 rounded-md">
+      <p className="text-center font-bold">{session && session.user?.name}님 반갑습니다.</p>
+      <Link href="/logout" className="text-yellow-300 hover:underline">
+        로그아웃
+      </Link>
+      </div>
           </>
         :
           <>
