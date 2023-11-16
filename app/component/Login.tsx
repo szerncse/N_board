@@ -41,7 +41,7 @@ export default async function Login(){
         :
           <>
           <Link href="/register">회원가입</Link>
-          <button onClick={redirectTo}>로그인</button>
+          <button >로그인</button>
         </>
       }
 
