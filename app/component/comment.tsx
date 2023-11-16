@@ -49,6 +49,7 @@ export default function Comment(props: CommentProps){
       content: ''
     })
 
+    
     const [totalComment, setTotalComment] = useState<CommentType[]>();
     
     const commentValue = (e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -66,8 +67,16 @@ export default function Comment(props: CommentProps){
       setTotalComment(data.result);
       }
       fetchData()
-    }, [useParams.id])
+    }, [params.id])
 
+    useEffect(()=>{
+      setFormData({
+        userid: session?.user.email ?? '',
+      username: session?.user.name ?? '',
+      parentid: id,
+      content: ''
+      })
+    },[session?.user.name, session?.user.email,id])
 
 
     const cmtSubmit = async ()=>{
@@ -113,7 +122,7 @@ export default function Comment(props: CommentProps){
                 const formatDate = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`
 
                 return (
-                  <p>{formatDate}</p>
+                  <p key={i}>{formatDate}</p>
                 )
               })
             }
