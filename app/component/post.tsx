@@ -101,6 +101,7 @@ export default function Post() {
                 }
 
                 {page < lastPage && <button onClick={() => nextPage()} className='bg-white border px-1.5 py-1 rounded text-sm' >다음</button>}
+               
                 {/* {page < lastPage && <button onClick={nextPage} className='bg-white border px-1.5 py-1 rounded text-sm'>다음</button>} */}
             </div>
         </>
