@@ -78,9 +78,8 @@ export default async function PostsList({
                   <ul key={i} className='flex justify-between'>
                     <li className='px-6 basis-2/12 py-3 text-center'>{results.length - i}</li>
 
-
                     <li className='px-6 basis-6/12 py-3 text-center'>
-                      <Link href="/post/[id]" as={`/post/${e.id}`} >{e.title}</Link></li>
+                      <Link href={`/post/${e.id}`}>{e.title}</Link></li>
 
                     <li className='px-6 basis-2/12 py-3 text-center'>{e.username}</li>
                     <li className='px-6 basis-2/12 py-3 text-center'>{formatDate}</li>

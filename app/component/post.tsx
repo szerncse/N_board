@@ -60,7 +60,6 @@ export default function Post() {
                         <ul className='bg-sky-100 flex justify-between'>
                             <li className='px-6 basis-2/12  py-3 text-center'>번호</li>
                             <li className='px-6 basis-6/12  py-3 text-center'>제목</li>
-
                             <li className='px-6 basis-2/12  py-3 text-center'>작성자</li>
                             <li className='px-6 basis-2/12  py-3 text-center'>작성일</li>
                         </ul>
@@ -76,8 +75,8 @@ export default function Post() {
                                 return (
                                     <ul key={i} className='flex justify-between'>
                                         <li className='px-6 basis-2/12 py-3 text-center'>{posts.length - i}</li>
-                                        <Link href="/post" >
-                                            <li className='px-6 basis-6/12 py-3 text-center'>{e.title}</li></Link>
+                                        <li className='px-6 basis-6/12 py-3 text-center'>
+                                            <Link href={`/post/${e.id}`}>{e.title}</Link></li>
                                         <li className='px-6 basis-2/12 py-3 text-center'>{e.username}</li>
                                         <li className='px-6 basis-2/12 py-3 text-center'>{formatDate}</li>
                                     </ul>
@@ -101,7 +100,7 @@ export default function Post() {
                 }
 
                 {page < lastPage && <button onClick={() => nextPage()} className='bg-white border px-1.5 py-1 rounded text-sm' >다음</button>}
-               
+
                 {/* {page < lastPage && <button onClick={nextPage} className='bg-white border px-1.5 py-1 rounded text-sm'>다음</button>} */}
             </div>
         </>
