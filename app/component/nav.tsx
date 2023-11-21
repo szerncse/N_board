@@ -38,7 +38,8 @@ export default async function Nav() {
                     </>
                     :
                     <>
-                        <Link href="/register">회원가입</Link>
+                        <Link href="/register" 
+                        className="basis-[48%] px-6 py-2.5 bg-green-400 text-white font-medium text-base mt-2 leading-tight uppercase rounded shadow-md hover:bg-green-500 hover:shadow-lg focus:bg-green-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-500 active:shadow-lg transition duration-150 ease-in-out">회원가입</Link>
                         <Login />
 
                     </>
