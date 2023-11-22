@@ -18,6 +18,8 @@ data.id 로 사용 가능...
 import { useEffect, useState } from "react";
 import { useCustomSession } from "../sessions";
 import { useParams } from 'next/navigation'
+import EditDelete from "../post/[id]/editDelete";
+import { Result } from "postcss";
 
 
 interface CommentProps {
@@ -122,13 +124,17 @@ export default function Comment(props: CommentProps) {
               const formatDate = `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`
 
               return (
-                <p key={i}>{formatDate}</p>
+                <p key={i} className="border w-64 bg-rose-100 rounded m-5">
+                  <p className="text-white drop-shadow-[1px_0_2px_black]">작성자: {e.username}</p>
+                  <p className="text-white drop-shadow-[1px_0_2px_black]">내용: {e.content}</p>
+                  <p className="text-white drop-shadow-[1px_0_2px_black]">작성일:{formatDate}</p>
+                </p>
               )
             })
           }
-          <input name="content" type="text" onChange={commentValue} className="border p-2 border-orange-500 rounded " />
-          <button onClick={cmtSubmit}>댓글 전송</button>
-          {/* 수정삭제 넣기 */}
+          <input name="content" type="text" onChange={commentValue} className="border p-2 border-orange-500 rounded m-5" />
+          <button className="bg-yellow-200 rounded border m-5" onClick={cmtSubmit}>댓글 전송</button>
+
         </>
       }
     </>

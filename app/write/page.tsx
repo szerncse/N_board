@@ -14,6 +14,7 @@ import { useCustomSession } from "../sessions";
 
 export default function Write() {
   const { data: session } = useCustomSession();
+  console.log(session)
   const [formData, setFormData] = useState<formType>({
     userid: session?.user.email ?? '',
     username: session?.user.name ?? '',

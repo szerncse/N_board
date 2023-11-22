@@ -7,12 +7,13 @@ interface formType {
     email: string;
     password: string;
     name: string;
+    phone: string;
 }
 export const POST = async (
     req: NextRequest
 ): Promise<NextResponse> => {
     if (req.method === 'POST') {
-        const { email, password, name }: formType = JSON.parse
+        const { email, password, name, phone }: formType = JSON.parse
             (await req.text());
 
         if (!email || !password || !name) {
@@ -27,7 +28,7 @@ export const POST = async (
         if (memberCnt > 0) {
             return NextResponse.json({ message: "해당 이메일이 존재합니다." })
         } else {
-            const [results] = await db.query('insert into coco.member (email, password, name) Values(?,?,?)', [email, hash, name]);
+            const [results] = await db.query('insert into coco.member (email, password, name, phone) Values(?,?,?,?)', [email, hash, name, phone]);
             const data = {
                 email: email,
                 password: password

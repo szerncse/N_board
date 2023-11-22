@@ -29,7 +29,7 @@ interface propsType {
 async function Getip() {
   const res = await fetch('http://localhost:3000/api/get-ip');
   const data = res.json();
-  if(!res.ok){
+  if (!res.ok) {
     alert("에러가 발생하였습니다.")
     return;
   }
@@ -79,7 +79,7 @@ export default async function Detail({
             {
               session ? <Comment id={post?.id} /> : <p className="block border p-4 text-center my-5 rounded-md bg-emerald-100"> <Link href="/login">로그인 이후 댓글을 작성할 수 있습니다❕</Link> </p>
             }
-<EditDelete results={post as propsType['results']} />
+            <EditDelete results={post as propsType['results']} />
           </>
         )
       }
