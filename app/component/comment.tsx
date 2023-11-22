@@ -18,8 +18,7 @@ data.id 로 사용 가능...
 import { useEffect, useState } from "react";
 import { useCustomSession } from "../sessions";
 import { useParams } from 'next/navigation'
-import EditDelete from "../post/[id]/editDelete";
-import { Result } from "postcss";
+
 
 
 interface CommentProps {
