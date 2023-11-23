@@ -10,7 +10,6 @@ import db from '@/db';
 import { RowDataPacket } from "mysql2";
 import { JWT } from "next-auth/jwt";
 import { Session } from "inspector";
-import { promises } from "dns";
 
 interface User {
   id: string;
