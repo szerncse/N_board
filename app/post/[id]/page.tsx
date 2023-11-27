@@ -28,6 +28,8 @@ interface propsType {
 }
 async function Getip() {
   // const res = await fetch('http://localhost:3000/api/get-ip');
+  // 컨트롤 F5
+
   const res = await fetch('https://n-board-szerncse.vercel.app/api/get-ip');
   const data = res.json();
   if (!res.ok) {
@@ -40,12 +42,12 @@ async function Getip() {
 
 export default async function Detail({
   params
-}: {
-  params?: { id: number }
+} : {
+  params ?: { id?: number }
 }) {
 
   const getIp = await Getip();
-  const userIp = getIp.data
+  const userIp = getIp.data.ip
   const postId = params?.id !== undefined ? params.id : 1;
   const [results] = await db.query<RowDataPacket[]>('select * from coco.board where id = ?', [postId]);
   const post = results && results[0]

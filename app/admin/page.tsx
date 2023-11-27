@@ -1,17 +1,17 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+// import { getServerSession } from 'next-auth';
+// import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 // import { Bar } from 'react-chartjs-2';
 // import { Chart } from 'chart.js'; 클라이언트에서만 동작한다 컴포넌트에서 동작안함
 
 
-interface userInfo {
-    user: {
-        name: string;
-        email: string;
-        image?: string;
-        level?: number
-    }
-}
+// interface userInfo {
+//     user: {
+//         name: string;
+//         email: string;
+//         image?: string;
+//         level?: number
+//     }
+// }
 
 
 export default async function Admin() {
@@ -51,12 +51,12 @@ export default async function Admin() {
         }
     }
 
-    let sessions = await getServerSession(authOptions) as userInfo;
-    if (!sessions && sessions || sessions?.user.level !== 10) {
-        return (
-            <p>관리자만 접속 가능한 페이지 입니다.</p>
-        )
-    }
+    // let sessions = await getServerSession(authOptions) as userInfo;
+    // if (!sessions && sessions || sessions?.user.level !== 10) {
+    //     return (
+    //         <p>관리자만 접속 가능한 페이지 입니다.</p>
+    //     )
+    // }
 
     return (
         <>
