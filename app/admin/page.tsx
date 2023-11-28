@@ -3,6 +3,8 @@
 // import { Bar } from 'react-chartjs-2';
 // import { Chart } from 'chart.js'; 클라이언트에서만 동작한다 컴포넌트에서 동작안함
 
+import TotalCount from "../component/admin/chart/totalcount"
+
 
 // interface userInfo {
 //     user: {
@@ -60,7 +62,8 @@ export default async function Admin() {
 
     return (
         <>
-            <p className='bg-yellow-300 border w-28 text-center'>관리자 전용</p>
+            <TotalCount />
+            {/* <p className='bg-yellow-300 border w-28 text-center'>관리자 전용</p> */}
             {/* <bar data={data options={options}}></bar> */}
 
         </>

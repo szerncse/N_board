@@ -28,7 +28,7 @@ export const POST = async (
                 const hash = await bcrypt.hash(password, 10);
                 await db.query<RowDataPacket[]>('update coco.member set email = ?, name = ?, level = ? where id = ?', [email, name, level, id])
             }
-            return NextResponse.json({message:"성공", data:name})
+            return NextResponse.json({ message: "성공", data: name })
         }
 
         if (!email || !password || !name) {
@@ -43,7 +43,7 @@ export const POST = async (
         if (memberCnt > 0) {
             return NextResponse.json({ message: "해당 이메일이 존재합니다." })
         } else {
-            const [results] = await db.query('insert into coco.member (email, password, name, phone) Values(?,?,?,?)', [email, hash, name, phone]);
+            const [results] = await db.query('insert into coco.member (email, password, name, phone, level) Values(?,?,?,?,?)', [email, hash, name, phone, level]);
             const data = {
                 email: email,
                 password: password
