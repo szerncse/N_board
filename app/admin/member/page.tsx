@@ -33,18 +33,18 @@ async function getData() {
 export default async function AdminMember() {
     const resultData = await getData();
     const data = resultData.data;
-   
+
     return (
         <>
-            <div className="widet w-full overflow-hidden mb-5 p-4">
-                <h3>회원관리</h3>
+            <div className="widget w-full overflow-hidden mb-5 p-4">
+                <h3>회원 관리</h3>
             </div>
-            <div className="widet w-full overflow-hidden">
+            <div className="widget w-full overflow-hidden">
                 <ul className="flex justify-between text-center py-2 bg-gray-50 text-xs sm:text-sm md:text-base">
                     <li className="hidden md:list-item basis-1/12">번호</li>
                     <li className="basis-4/12 md:basis-2/12">이메일</li>
                     <li className="basis-4/12 md:basis-2/12">이름</li>
-                    <li className=" basis-1/12">레벨</li>
+                    <li className="basis-1/12">레벨</li>
                     <li className="hidden md:list-item basis-3/12">가입날짜</li>
                     <li className="basis-2/12">수정/삭제</li>
                 </ul>

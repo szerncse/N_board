@@ -56,7 +56,7 @@ export default function Comment(props: CommentProps) {
   const commentValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     // setComment(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData)
+  
   }
 
   const params = useParams();

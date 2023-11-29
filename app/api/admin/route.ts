@@ -1,20 +1,20 @@
 import db from '@/db';
 import { NextRequest, NextResponse } from "next/server";
 import { RowDataPacket } from "mysql2/promise";
-import { parse } from 'path';
+
 
 interface PostType {
     pathUrl?: string;
     id?: number;
 }
 
-interface MainType{
-    totalcnt : number,
-    todayCnt : number,
-    writeCnt : number,
-    commenCnt :number,
-    VisitCnt :number,
-    VisitTotalCnt : number,
+interface MainType {
+    totalcnt: number,
+    todayCnt: number,
+    writeCnt: number,
+    commenCnt: number,
+    VisitCnt: number,
+    VisitTotalCnt: number,
 }
 
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
@@ -37,15 +37,28 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                 const [VisitTotalCnt] = await db.query<RowDataPacket[]>('select count(*) as cnt from coco.visits');
 
                 const totalData: MainType = {
-                    totalcnt : totalcnt[0].cnt ?? 0,
-                    todayCnt : todayCnt[0].cnt ?? 0,
-                    writeCnt : writeCnt[0].cnt ?? 0,
-                    commenCnt : commenCnt[0].cnt ?? 0,
-                    VisitCnt : VisitCnt[0].cnt ?? 0,
-                    VisitTotalCnt : VisitTotalCnt[0].cnt ?? 0,
+                    totalcnt: totalcnt[0].cnt ?? 0,
+                    todayCnt: todayCnt[0].cnt ?? 0,
+                    writeCnt: writeCnt[0].cnt ?? 0,
+                    commenCnt: commenCnt[0].cnt ?? 0,
+                    VisitCnt: VisitCnt[0].cnt ?? 0,
+                    VisitTotalCnt: VisitTotalCnt[0].cnt ?? 0,
                 }
-                
-                return NextResponse.json({message: "성공", data:totalData})
+
+                return NextResponse.json({ message: "성공", data: totalData })
+
+            case 'mainNewMember':
+                const [todayMember] = await db.query<RowDataPacket[]>('select * from coco.member where date >= now() - interval 1 day');
+                return NextResponse.json({ message: "성공", data: todayMember })
+            case 'mainPost':
+                const [newpost] = await db.query<RowDataPacket[]>('select * from coco.member where date >= now() - interval 1 day');
+                const [newComment] = await db.query<RowDataPacket[]>('select * from coco.member where date >= now() - interval 1 day');
+                const postData = {
+                    newpost: newpost,
+                    newComment: newComment
+                }
+                return NextResponse.json({ message: "성공", data: postData })
+
 
             default:
                 return NextResponse.json({ error: "알 수 없는 에러가 발생 하였습니다." })

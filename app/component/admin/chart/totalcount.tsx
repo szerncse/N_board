@@ -16,7 +16,7 @@ async function getData() {
     const data = res.json();
     if (!res.ok) {
         console.log('에러가 발생하였습니다.')
-        // alert('에러가 발생하였습니다.')
+
         return
     }
     return data;
@@ -31,20 +31,20 @@ export default async function TotalCount() {
 
     return (
         <>
-        <ul className="flex justify-between flex-wrap lg:mb-4">
-            {
-                lisMenu.map((e,i)=>{
-                    return(
-                        <li key={i} className="widget p-4 basis-[48%] lg:basis-[15%] mb-4 lg:mb-0 flex justify-between">
-                            <h3>{e}</h3>
-                            <p><span className="font-bold">{listCnt[i]}</span>{i === 2 || i === 3 ? "개" : "명"}</p>
-                        </li>
-                    )
-                })
-            }
+            <ul className="flex justify-between flex-wrap lg:mb-4">
+                {
+                    lisMenu.map((e, i) => {
+                        return (
+                            <li key={i} className="widget p-4 basis-[48%] lg:basis-[15%] mb-4 lg:mb-0 flex justify-between">
+                                <h3>{e}</h3>
+                                <p><span className="font-bold">{listCnt[i]}</span>{i === 2 || i === 3 ? "개" : "명"}</p>
+                            </li>
+                        )
+                    })
+                }
 
-        </ul>
-   
+            </ul>
+
         </>
 
     )

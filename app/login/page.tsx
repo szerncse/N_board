@@ -25,7 +25,7 @@ export default function LoginPage() {
     useEffect(()=>{
         if(typeof window !== 'undefined'){
             const prevPage = sessionStorage.getItem('preUrl') || '/';
-            console.log(prevPage)
+       
             setPreUrl(prevPage)
         }   
     }, [])

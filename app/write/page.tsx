@@ -14,7 +14,7 @@ import { useCustomSession } from "../sessions";
 
 export default function Write() {
   const { data: session } = useCustomSession();
-  console.log(session)
+
   const [formData, setFormData] = useState<formType>({
     userid: session?.user.email ?? '',
     username: session?.user.name ?? '',
@@ -27,10 +27,10 @@ export default function Write() {
       username: session?.user.name ?? '',
       title: '',
       content: ''
-      
+
     })
   }, [session?.user.name, session?.user.email])
-// console.log(formData)
+  // console.log(formData)
   const changeEvent = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(formData)
@@ -64,7 +64,7 @@ export default function Write() {
   if (!session) {
     return <p>로그인안함</p>
   }
-  console.log(session)
+ 
 
   return (
     <>
@@ -96,28 +96,27 @@ export default function Write() {
                   <textarea id="content" name="content" onChange={changeEvent}
                     defaultValue={formData.content}
                     className="mt-1 focus:ring-sky-500 focus:border-sky-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
-                    {/* <input type="text" name="email" onChange={changeEvent}/> */}
+                  {/* <input type="text" name="email" onChange={changeEvent}/> */}
                 </div>
               </div>
             </div>
           </div>
-          
-{/* 세션의 유저의 이메일이 없으면 인풋이 나오면된다. */}
-          {!session?.user.email && (
-  <div className="col-span-6">
-    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-      이메일
-    </label>
 
-    <input
-      type="text"
-      id="email"
-      name="userid"
-      onChange={changeEvent}
-      className="mt-1 focus:ring-sky-500 focus:border-sky-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-    />
-  </div>
-)}
+          {/* 세션의 유저의 이메일이 없으면 인풋이 나오면된다. */}
+          {!session?.user.email && (
+            <div className="col-span-6">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                이메일
+              </label>
+
+              <input
+                type="text"
+                id="email"
+                name="userid"
+                onChange={changeEvent}
+                className="mt-1 focus:ring-sky-500 focus:border-sky-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+            </div>
+          )}
 
 
           <div className="flex justify-end space-x-4">

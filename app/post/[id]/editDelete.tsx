@@ -37,6 +37,7 @@ const deletePost = async(e:number) =>{
             window.location.href = "/"
         }else{
             alert("삭제 실패");
+            
             return;
         }
 

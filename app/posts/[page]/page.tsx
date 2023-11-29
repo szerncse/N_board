@@ -21,11 +21,11 @@ export default async function PostsList({
 } : {
     params?: {page ?: number}
 }) {
-    console.log(params)
+  
 
   const currentpage = params?.page !== undefined ? params.page : 1;
 //   현재 파라미터가 값이 없다면 1페이지가 되고 그게 아니라면 해당 페이지로 접속
-  const perPage = 3;
+  const perPage = 15;
   const offset = (currentpage - 1) * perPage;
 
 

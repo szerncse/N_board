@@ -10,7 +10,7 @@ interface PostType {
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
 
     const { ip, platform, agent }: PostType = JSON.parse(await req.text());
-console.log( ip, platform, agent)
+
     if (req.method === 'POST') {
 
         const [results] = await db.query<RowDataPacket[]>('select count(*) as cnt from coco.visits where ip_address = ? and visit_time > now() - interval 10 second', [ip])

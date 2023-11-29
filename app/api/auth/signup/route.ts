@@ -22,7 +22,7 @@ export const POST = async (
         if (type === 'edit') {
             const [coco] = await db.query<RowDataPacket[]>('select password from coco.member where email = ?', [email]);
             if (password === coco[0].password) {
-                console.log("같음")
+                // console.log("같음")
                 await db.query<RowDataPacket[]>('update coco.member set email = ?, name = ?, level = ? where id = ?', [email, name, level, id])
             } else {
                 const hash = await bcrypt.hash(password, 10);

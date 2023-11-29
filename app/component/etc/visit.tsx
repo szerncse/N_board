@@ -16,7 +16,7 @@ export default function Visit() {
             try {
                 const res1 = await fetch('/api/get-ip');
                 const data = await res1.json();
-console.log( data)
+
                 await fetch('/api/visit', {
                     cache: 'no-cache',
                     method: 'POST',

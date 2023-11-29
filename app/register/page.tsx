@@ -22,7 +22,7 @@ export default  function Register(){
     setFormData({
       ...formData, [e.target.name] : e.target.value
     })
-    console.log(formData)
+    
   }
   const submitEvent = async (e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
@@ -48,7 +48,7 @@ export default  function Register(){
             callbackUrl : '/'
           })
         }
-        console.log(data)
+   
         setMessage(data.message);
       }
     }catch(error){
