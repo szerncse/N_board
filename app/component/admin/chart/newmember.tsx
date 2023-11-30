@@ -53,6 +53,7 @@ export default function NewMember() {
                         <li className='basis-[23%] text=[#6f809a] font-bold text-center text-xs sm:text-sm '>닉네임</li>
                         <li className='basis-[23%] text=[#6f809a] font-bold text-center text-xs sm:text-sm '>가입일</li>
                     </ul>
+                    {/* 유저 데이터를 반복문으로 출력 */}
                 </div>
             </div>
         </>
