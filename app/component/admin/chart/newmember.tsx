@@ -11,7 +11,7 @@ interface userType {
     date: string;
 }
 
-export default function Newmember() {
+export default function NewMember() {
     const [userData, setUserData] = useState<userType>()
     useEffect(() => {
         const fetchData = async () => {

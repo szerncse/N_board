@@ -27,7 +27,7 @@ export default async function TotalCount() {
     const resultData = await getData();
     const data = resultData.data;
     const lisMenu = ['총 회원수', "신규 가입 수", "금일 새글 수", "금일 새댓글 수", "금일 방문자수", "총 방문자수"]
-    const listCnt = [data.totalcnt, data.todayCnt, data.writeCnt, data.commenCnt, data.VisitCnt, data.VisitTotalCnt]
+    const listCnt = [data.totalCnt,data.memberCnt, data.writeCnt, data.commentCnt, data.visitCnt, data.visitTotalCnt]
 
     return (
         <>

@@ -1,75 +1,33 @@
-// import { getServerSession } from 'next-auth';
-// import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-// import { Bar } from 'react-chartjs-2';
-// import { Chart } from 'chart.js'; 클라이언트에서만 동작한다 컴포넌트에서 동작안함
-
-import Newmember from "../component/admin/chart/newmember"
-import Newpost from "../component/admin/chart/newpost"
-import TotalCount from "../component/admin/chart/totalcount"
-
-
-// interface userInfo {
-//     user: {
-//         name: string;
-//         email: string;
-//         image?: string;
-//         level?: number
-//     }
-// }
+import MemberChart from '../component/admin/chart/memberchart';
+import OsCom from '../component/admin/chart/oschart';
+import PlatformCom from '../component/admin/chart/platformchart';
+import VisitChart from '../component/admin/chart/visitchart';
+import NewMember from '../component/admin/chart/newmember';
+import NewPost from '../component/admin/chart/newpost';
+import TotalCount from '../component/admin/chart/totalcount';
 
 
-export default async function Admin() {
-    const data = {
-        labels: ['orange', 'green', 'blue'],
-        datasets: [
-            {
-                label: 'My First Dataset',
-                data: [10, 50, 5],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)'
-                ],
-                borderWidth: 1
-            }
-        ]
-    }
-    const options = {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
 
-    // let sessions = await getServerSession(authOptions) as userInfo;
-    // if (!sessions && sessions || sessions?.user.level !== 10) {
-    //     return (
-    //         <p>관리자만 접속 가능한 페이지 입니다.</p>
-    //     )
-    // }
 
-    return (
-        <>
-            <TotalCount />
-            <Newpost/>
-            <Newmember/>
-            {/* <p className='bg-yellow-300 border w-28 text-center'>관리자 전용</p> */}
-            {/* <bar data={data options={options}}></bar> */}
 
-        </>
-    )
+
+
+export default function Admin(){
+  return(
+    <>
+     <TotalCount/>   
+     <div className="w-full my-5 flex flex-wrap justify-between">
+        <NewMember/>
+        <NewPost/>
+     </div>
+     <div className="w-full my-5 flex flex-wrap justify-between">
+      <MemberChart/>
+      <VisitChart/>
+     </div>
+     <div className="w-full my-5 flex flex-wrap justify-between">
+      <OsCom/>
+      <PlatformCom/>
+     </div>
+    </>
+  )
 }

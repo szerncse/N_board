@@ -1,7 +1,5 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import Logout from '../component/Logout';
-import Link from 'next/link';
 import AdminNav from '../component/admin/navbar/adminnav';
 
 interface userInfo {
